@@ -3,6 +3,9 @@ import axios from 'axios'
 import logo from './logo.svg';
 import './App.css';
 import UserList from './components/User.js'
+import Header from './components/Header.js';
+import Menu from './components/Menu.js';
+import Footer from './components/Footer.js';
 
 class App extends React.Component {
     constructor(props) {
@@ -16,7 +19,8 @@ class App extends React.Component {
     componentDidMount() {
         axios.get('http://127.0.0.1:8000/api/users')
             .then(response => {
-                const authors = response.data
+                const users = response.data
+                console.dir(response)
                     this.setState(
                   {
                       'users': users
@@ -28,7 +32,10 @@ class App extends React.Component {
   render () {
     return (
       <div>
+        <Header />
         <UserList users={this.state.users} />
+        <Menu />
+        <Footer />
       </div>
     )
   }
