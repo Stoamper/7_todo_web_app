@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'ptpython',
     'authnapp',
+    'todo_web_app',
 ]
 
 MIDDLEWARE = [
