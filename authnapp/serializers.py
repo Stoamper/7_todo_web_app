@@ -8,4 +8,4 @@ class UserModelSerializer(HyperlinkedModelSerializer):
         model = User
         # fields = '__all__'
         # fields = ['first_name', 'last_name', 'email']
-        fields = ['first_name', 'last_name', 'birthday_year']
+        fields = ['first_name', 'last_name', 'birthday_year', 'email']

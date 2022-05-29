@@ -15,4 +15,4 @@ class TODO(models.Model):
     todo_text = models.TextField(max_length=512, verbose_name='текст заметки', blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, models.PROTECT)
+    user = models.ForeignKey(User, models.PROTECT, verbose_name='пользователь')
