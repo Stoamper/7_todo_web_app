@@ -2,11 +2,10 @@
 
 from rest_framework.serializers import HyperlinkedModelSerializer
 from unittest.util import _MAX_LENGTH
-from rest_framework import serializers
+# from rest_framework import serializers
 
-from authnapp.serializers import UserModelSerializer
-from .models import Project, TODO
-
+# from authnapp.serializers import UserModelSerializer
+from .models import Project, TODO, TestProjectClass
 
 #Ниже первичные сериализаторы (через Model)
 class ProjectModelSerializer(HyperlinkedModelSerializer):
@@ -18,6 +17,20 @@ class TodoModelSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = TODO
         fields = '__all__'
+
+# Рабочий
+class TestProjectSerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = TestProjectClass
+        fields = '__all__'
+
+
+# class TestProjectSerializer(ModelSerializer):
+#     class Meta:
+#         model = TestProjectClass
+#         fields = '__all__'
+
+
 
 
 #Сериализаторы для проверки (с ними надо разбираться)
