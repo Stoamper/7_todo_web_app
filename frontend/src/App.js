@@ -10,17 +10,20 @@ import Footer from './components/Footer.js';
 class App extends React.Component {
     constructor(props) {
         super(props)
+
+        // const user1 = {first_name: 'Alex', last_name: 'Kern', birthday_year: 1975}        
+        // const users = [user1]
         this.state = {
             'users': []
         }
     }
 
 
-    componentDidMount() {
+    componentDidMount() {  
         axios.get('http://127.0.0.1:8000/api/users')
-            .then(response => {
-                const users = response.data
-                console.dir(response)
+            .then(response => { 
+              const users = response.data.results
+                console.dir(response.data)
                     this.setState(
                   {
                       'users': users

@@ -247,3 +247,6 @@ fabric.properties
 tmp
 
 # <--- geekshopnode_modules/
+
+# node_modules
+node_modules/
