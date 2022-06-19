@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ptpython',
     'authnapp',
     'todo_web_app',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,16 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # AUTH_USER_MODEL = 'authnapp.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES' : [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend',],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100,
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}
