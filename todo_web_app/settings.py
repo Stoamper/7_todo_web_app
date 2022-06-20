@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'authnapp',
     'todo_web_app',
     'django_filters',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -140,12 +141,8 @@ CORS_ALLOWED_ORIGINS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES' : [
-<<<<<<< HEAD
-        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-        'rest_framework.permissions.AllowAny',
-=======
-        'rest_framework.permissions.AllowAny',
->>>>>>> main
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        # 'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend',],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -154,12 +151,9 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
-<<<<<<< HEAD
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
-=======
->>>>>>> main
 }
