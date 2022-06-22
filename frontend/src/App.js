@@ -9,6 +9,7 @@ import Header from './components/Header.js';
 import Menu from './components/Menu.js';
 import Footer from './components/Footer.js';
 import {Route, Routes, BrowserRouter, Link} from 'react-router-dom'
+import LoginForm from './components/Auth';
 
 class App extends React.Component {
     constructor(props) {
@@ -71,11 +72,10 @@ class App extends React.Component {
           <Menu />
           <nav>
             <ul>
-              <li>
-                <Link to="/">Users</Link>
-                <Link to="/projects">Projects</Link>
-                <Link to="/TODO">TODO</Link>
-              </li>
+              <li> <Link to="/">Users</Link> </li>
+              <li> <Link to="/projects">Projects</Link> </li>
+              <li> <Link to="/TODO">TODO</Link> </li>
+              <li> <Link to="/login">Login</Link> </li>
             </ul>
           </nav>
             <Routes>
@@ -84,6 +84,8 @@ class App extends React.Component {
               <Route path="/projects" element={<ProjectList projects={this.state.projects} />
               } />
               <Route path="/TODO" element={<TodoList todos={this.state.todos} />
+              } />
+              <Route path="/login" element={<LoginForm/>
               } />
             </Routes>
         {/* <UserList users={this.state.users} /> */}
