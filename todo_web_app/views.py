@@ -1,6 +1,7 @@
 
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Project, TODO, TestProjectClass
 from .serializers import ProjectModelSerializer, TodoModelSerializer, TestProjectSerializer
@@ -18,11 +19,19 @@ class TodoLimitOffsetPagination(LimitOffsetPagination):
 
 
 #Ниже простые ViewSet (ProjectModelSerializer и TodoModelSerializer). С ними работает
+# class ProjectModelViewSet(ModelViewSet):
+#     queryset = Project.objects.all()
+#     serializer_class = ProjectModelSerializer
+#     pagination_class = ProjectLimitOffsetPagination
+#     filter_class = ProjectFilter
+
 class ProjectModelViewSet(ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
     pagination_class = ProjectLimitOffsetPagination
     filter_class = ProjectFilter
+
 
 class TodoModelViewSet(ModelViewSet):
     queryset = TODO.objects.all()
