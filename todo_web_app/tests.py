@@ -23,7 +23,7 @@ class TestUserViewSet(TestCase):
         response = view(request)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-# Попытка внесения записи в users неавторизованным пользователем (c create выдает ошибку)
+# 2 Попытка внесения записи в users неавторизованным пользователем (c create выдает ошибку)
     def test_create_guest(self):
         factory = APIRequestFactory()
         request = factory.post('/api/users/', {'first_name':'Афанасий', 'last_name':'Фет', 'birthday_year':1820}, format='json')
@@ -44,28 +44,28 @@ class TestUserViewSet(TestCase):
 
 
 # APIClient
-# Проверка страницы с детальной информацией об авторе
+# 3 Проверка страницы с детальной информацией об авторе
     def test_get_detail(self):
         user = User.objects.create(first_name='Александр', last_name='Пушкин', birthday_year=1799)
         client = APIClient()
         response = client.get(f'/api/users/{user.id}/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-# Проверка страницы с детальной информацией об авторе (Mixer)
+# 4 Проверка страницы с детальной информацией об авторе (Mixer)
     def test_get_detail_mixer(self):
         user = mixer.blend(User)
         client = APIClient()
         response = client.get(f'/api/users/{user.id}/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-# Попытка редактирования неавторизованным пользователем
+# 5 Попытка редактирования неавторизованным пользователем
     def test_edit_guest(self):
         user = User.objects.create(first_name='Афанасий', last_name='Фет', birthday_year=1820)
         client = APIClient()
         response = client.put(f'/api/users/{user.id}/', {'first_name':'Афанасий', 'last_name':'Фет', 'birthday_year':1820})
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-# Попытка редактирования автора неавторизованным пользователем (Mixer)
+# 6 Попытка редактирования автора неавторизованным пользователем (Mixer)
     def test_edit_guest_mixer(self):
         user = mixer.blend(User)
         client = APIClient()
@@ -75,13 +75,13 @@ class TestUserViewSet(TestCase):
 
 
 # APITestCase
-# Получение списка задач
+# 7 Получение списка задач
 class TestTodoViewSet(APITestCase):
     def test_get_list(self):
         response = self.client.get('/api/TODO/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-# Получить информацию со страницы Todo через APIRequestFactory
+# 8 Получить информацию со страницы Todo через APIRequestFactory
     def test_get_list_projects(self):
         factory = APIRequestFactory()
         request = factory.get('/api/projects/')
@@ -91,21 +91,21 @@ class TestTodoViewSet(APITestCase):
 
 
 # APITestCase
-# Получение списка проектов незарегистрированным пользователем
+# 9 Получение списка проектов незарегистрированным пользователем
 # 401 т.к. ProjectModelViewSet permission_classes = [IsAuthenticated]
 class TestProjectViewSet(APITestCase):
     def test_get_list(self):
         response = self.client.get('/api/projects/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-# Попытка редактирования задачи неавторизованным пользователем (Mixer)
+# 10 Попытка редактирования задачи неавторизованным пользователем (Mixer)
     def test_edit_project_guest_mixer(self):
         project = mixer.blend(Project)
         client = APIClient()
         response = client.put(f'/api/projects/{project.id}/', {'project_title':'Math', 'repo_link':'github.com', 'users_in_project':1})
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-# APISimpleTestCase
+# 11 APISimpleTestCase
 class TestMath(APISimpleTestCase):
     def test_pow(self):
         import math
