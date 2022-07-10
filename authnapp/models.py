@@ -6,3 +6,5 @@ class User(models.Model):
     email = models.EmailField(max_length=254, verbose_name="электронная почта", unique=True, blank=True)
     city = models.CharField(max_length=128, default="Москва", verbose_name="город", blank=True, null=True)
     address = models.CharField(max_length=254, verbose_name="адресс", blank=True, null=True)
+    is_superuser = models.BooleanField(default=False, verbose_name="Права доступа администратора")
+    is_staff = models.BooleanField(default=True, verbose_name="Права доступа простого пользователя")
