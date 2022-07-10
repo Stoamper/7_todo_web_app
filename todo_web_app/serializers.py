@@ -13,6 +13,13 @@ class ProjectModelSerializer(HyperlinkedModelSerializer):
         model = Project
         fields = '__all__'
 
+
+#  Для работы с тестами создадим новый сериализатор для Project
+class ProjectModelSerializerBase(HyperlinkedModelSerializer):
+   class Meta:
+        model = Project
+        fields = '__all__'
+
 class TodoModelSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = TODO
