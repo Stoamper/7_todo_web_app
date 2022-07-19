@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'todo_web_app',
     'django_filters',
     'rest_framework.authtoken',
-    'drf_yasg'
+    'drf_yasg',
+    'graphene',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -163,3 +165,5 @@ REST_FRAMEWORK = {
     # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.AcceptHeaderVersioning',
     
 }
+
+GRAPHENE = {'SCHEMA': 'todo_web_app.schema.schema'}
